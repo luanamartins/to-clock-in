@@ -1,3 +1,6 @@
+# Generated war folder
+target/
+
 # Compiled class file
 *.class
 
@@ -9,6 +12,14 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+# IntelliJ
+.idea
+
+# Eclipse
+.project
+.classpath
+.settings
 
 # Package Files #
 *.jar
