@@ -4,12 +4,19 @@ import org.clock.in.model.ClockIn;
 
 import java.time.LocalDateTime;
 
-public class ClockInCheckerRule implements RegistrationRule {
+public class ClockInCheckerRule implements ProcessChain {
 
-    public boolean process(ClockIn clockIn){
+    private ProcessChain chain;
+
+    public void setNextChain(ProcessChain nextChain) {
+        this.chain = nextChain;
+    }
+
+    public void process(ClockIn clockIn) {
         LocalDateTime dateTime = clockIn.getLocalDateTime();
         LocalDateTime lastCheckIn = LocalDateTime.now(); /*(pegar do banco)*/
-        return passedAMinute(lastCheckIn, dateTime);
+
+        //passedAMinute(lastCheckIn, dateTime);
     }
 
     public boolean passedAMinute(LocalDateTime past, LocalDateTime current) {
