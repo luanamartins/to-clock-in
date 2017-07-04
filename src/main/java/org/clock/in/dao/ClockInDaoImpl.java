@@ -10,7 +10,8 @@ public class ClockInDaoImpl implements ClockInDao {
     @Autowired
     JdbcClockInDao daoImpl;
 
-    public boolean insertClockIn(ClockIn clockIn) {
+    public boolean insert(ClockIn clockIn) {
         return daoImpl.insert(clockIn);
     }
+
 }

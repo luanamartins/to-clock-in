@@ -63,7 +63,7 @@ public class ClockInController {
         LocalDateTime dateTime = LocalDateTime.parse((String) model.get("dateTime"), formatter);
 
         ClockIn clockIn = new ClockIn(pis, dateTime);
-        boolean insertion = clockInDao.insertClockIn(clockIn);
+        boolean insertion = clockInDao.insert(clockIn);
 
         if(insertion)
             return "{'status':'ok'}";
