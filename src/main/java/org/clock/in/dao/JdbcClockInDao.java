@@ -13,8 +13,7 @@ public class JdbcClockInDao {
 
     public boolean insert(ClockIn clockIn) {
         String sql = "INSERT INTO clock_in (PIS, CLOCKIN_DATE) VALUES (?, ?)";
-
-        template.update(sql, new Object[]{clockIn.getPis(), clockIn.getDateTime().toString()});
+        template.update(sql, new Object[]{clockIn.getPis(), clockIn.getLocalDateTime().toString()});
         return true;
     }
 
