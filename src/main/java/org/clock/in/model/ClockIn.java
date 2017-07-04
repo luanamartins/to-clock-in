@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 public class ClockIn {
 
     private String pis;
-    private LocalDateTime dateTime;
+    private LocalDateTime localDateTime;
 
-    public ClockIn(String pis, LocalDateTime dateTime) {
+    public ClockIn(String pis, LocalDateTime localDateTime) {
         this.pis = pis;
-        this.dateTime = dateTime;
+        this.localDateTime = localDateTime;
     }
 
     public String getPis() {
@@ -20,11 +20,11 @@ public class ClockIn {
         this.pis = pis;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
