@@ -1,5 +1,6 @@
-package org.clock.in.registers;
+package org.clock.in.registers.rules;
 
+import org.clock.in.registers.rules.ClockInCheckerRule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
