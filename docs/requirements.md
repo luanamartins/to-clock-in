@@ -19,7 +19,7 @@ Deverá ser calculado os minutos trabalhados de acordo com regra:
   Para trabalho realizado entre as 22:00 e 06:00 a cada 60 minutos trabalhados são contabilizados 72 minutos.
 
 Deverá ser calculado se os intervalos de descanso foram respeitados de acordo com a regra:
-  Abaixo de 4 horas trabalhas não é necessário descanso.
+  Abaixo de 4 horas de trabalho não é necessário descanso.
   Acima de 4 horas e abaixo de 6 horas trabalhadas é necessário um descanso mínimo de 15 minutos.
   Acima de 6 horas trabalhadas é necessário um descanso mínimo de 1 hora.
 
