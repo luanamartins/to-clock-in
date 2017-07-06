@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.clock.in.dao", "org.clock.in.configuration", "org.clock.in.controller"})
+@ComponentScan(basePackages = {"org.clock.in.dao", "org.clock.in.configuration", "org.clock.in.controller", "org.clock.in.util"})
 public class ClockInConfiguration {
 
     @Bean(name = "HelloWorld")
