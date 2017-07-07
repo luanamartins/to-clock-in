@@ -1,0 +1,1 @@
+INSERT INTO `workers` (`pis`, `name`) VALUES (<{pis: }>,<{name: }>);

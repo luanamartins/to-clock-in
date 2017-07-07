@@ -12,6 +12,7 @@ CREATE TABLE `work_time` (
   `work_hours` int(11) DEFAULT NULL,
   `work_minutes` int(11) DEFAULT NULL,
   `work_rest_minutes` int(11) DEFAULT NULL,
+  `first_out` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
