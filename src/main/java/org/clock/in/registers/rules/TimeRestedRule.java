@@ -30,8 +30,9 @@ public class TimeRestedRule implements ChainRule {
 
     public void process(ClockIn clockIn) throws ChainException {
         LocalDateTime currentTime = clockIn.getLocalDateTime();
+
         LocalDateTime lastTime = clockInDao.getLastClockIn(currentTime, clockIn.getPis());
-        WorkTime workTime = workTimeDao.get(clockIn.getLocalDateTime(), clockIn.getPis());
+        WorkTime workTime = workTimeDao.get(currentTime, clockIn.getPis());
 
         boolean firstClockInOfTheDay = lastTime == null;
 
