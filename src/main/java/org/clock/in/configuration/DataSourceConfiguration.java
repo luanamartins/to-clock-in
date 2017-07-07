@@ -26,6 +26,7 @@ public class DataSourceConfiguration {
 
         String url = "jdbc:mysql://" + env.getProperty("database.host") + "/" + env.getProperty("database.schema");
         dataSource.setUrl(url);
+
         dataSource.setUsername(env.getProperty("database.user"));
         dataSource.setPassword(env.getProperty("database.password"));
 
