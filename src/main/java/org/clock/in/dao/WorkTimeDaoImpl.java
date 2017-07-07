@@ -2,9 +2,11 @@ package org.clock.in.dao;
 
 import org.clock.in.model.WorkTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class WorkTimeDaoImpl implements WorkTimeDao {
 
     @Autowired
@@ -18,8 +20,8 @@ public class WorkTimeDaoImpl implements WorkTimeDao {
         return dao.get(date, pis);
     }
 
-    public void updateIsResting(LocalDateTime date, String pis, boolean isResting){
-        dao.updateIsResting(date, pis, isResting);
+    public void updateIsResting(String pis, boolean isResting){
+        dao.updateIsResting(pis, isResting);
     }
 
     public void updateWorkRestTime(WorkTime workTime, int totalRestTime){

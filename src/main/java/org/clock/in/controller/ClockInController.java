@@ -2,6 +2,7 @@ package org.clock.in.controller;
 
 import org.clock.in.dao.ClockInDaoImpl;
 import org.clock.in.model.ClockIn;
+import org.clock.in.registers.ClockInProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 public class ClockInController {
 
     @Autowired
-    ClockInDaoImpl clockInDao;
+    ClockInProcess clockInProcess;
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
@@ -63,11 +64,10 @@ public class ClockInController {
         LocalDateTime dateTime = LocalDateTime.parse((String) model.get("dateTime"), formatter);
 
         ClockIn clockIn = new ClockIn(pis, dateTime);
-        boolean insertion = clockInDao.insert(clockIn);
-
-        if(insertion)
+        try {
+            clockInProcess.process(clockIn);
             return "{'status':'ok'}";
-        else{
+        } catch (Exception e) {
             return "{'error':'It was not possible to insert clockin'}";
         }
     }

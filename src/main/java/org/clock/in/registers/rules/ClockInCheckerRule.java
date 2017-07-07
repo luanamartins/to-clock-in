@@ -7,9 +7,11 @@ import org.clock.in.model.WorkTime;
 import org.clock.in.registers.ChainException;
 import org.clock.in.registers.ChainRule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class ClockInCheckerRule implements ChainRule {
 
     private ChainRule chain;
@@ -32,22 +34,23 @@ public class ClockInCheckerRule implements ChainRule {
         LocalDateTime lastCheckIn = clockInDao.getLastClockIn(dateTime, clockIn.getPis());
 
         boolean firstClockInOfTheDay = lastCheckIn == null;
-        boolean hasPassedAMinute = passedAMinute(lastCheckIn, dateTime);
 
         if (firstClockInOfTheDay) {
             clockInDao.insert(clockIn);
             workTimeDao.insert(new WorkTime(pis, dateTime));
-            chain.process(clockIn);
-
-        } else if (hasPassedAMinute) {
-            clockInDao.insert(clockIn);
-            WorkTime workTime = workTimeDao.get(clockIn.getLocalDateTime(), clockIn.getPis());
-            boolean changeRestSwitch = !workTime.isResting();
-            workTimeDao.updateIsResting(clockIn.getLocalDateTime(), clockIn.getPis(), changeRestSwitch);
-            chain.process(clockIn);
-
         } else {
-            throw new ChainException("Less than a minute");
+            if (passedAMinute(lastCheckIn, dateTime)) {
+                clockInDao.insert(clockIn);
+//                WorkTime workTime = workTimeDao.get(clockIn.getLocalDateTime(), clockIn.getPis());
+//                boolean changeRestSwitch = !workTime.isResting();
+//                workTimeDao.updateIsResting(clockIn.getPis(), changeRestSwitch);
+            } else {
+                throw new ChainException("Less than a minute");
+            }
+        }
+
+        if(chain != null) {
+            chain.process(clockIn);
         }
     }
 

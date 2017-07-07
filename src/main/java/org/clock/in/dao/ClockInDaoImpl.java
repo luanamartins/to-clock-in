@@ -3,11 +3,12 @@ package org.clock.in.dao;
 import org.clock.in.model.ClockIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Component
+@Controller
 public class ClockInDaoImpl implements ClockInDao {
 
     @Autowired

@@ -4,9 +4,11 @@ import org.clock.in.mapper.WorkTimeRowMapper;
 import org.clock.in.model.WorkTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class JdbcWorkTimeDao {
 
     @Autowired
@@ -18,17 +20,22 @@ public class JdbcWorkTimeDao {
         return true;
     }
 
-    public WorkTime get(LocalDateTime date, String pis) {
-        String sql = "select * from work_time where date(work_date) = '?' and pis = '?'";
-        sql = String.format(sql, date.toString(), pis);
+    public WorkTime get(LocalDateTime localDateTime, String pis) {
+        String sql = "select * from work_time where date(work_date) = '%s%%' and pis = '%s'";
+
+        String localDateTimeStr = localDateTime.toString();
+        int lastIndexForDate = localDateTimeStr.indexOf("T");
+        String dateStr = localDateTimeStr.substring(0, lastIndexForDate);
+
+        sql = String.format(sql, dateStr, pis);
         Object workTime = template.queryForObject(sql, new WorkTimeRowMapper());
         if (workTime == null) return null;
 
-        return (WorkTime) template.queryForObject(sql, new WorkTimeRowMapper());
+        return (WorkTime) workTime;
     }
 
-    public void updateIsResting(LocalDateTime date, String pis, boolean isResting) {
-        String sql = "update work_time set is_resting = ? where pis = '?'";
+    public void updateIsResting(String pis, boolean isResting) {
+        String sql = "update work_time set is_resting = %b where pis = '%s'";
         sql = String.format(sql, isResting, pis);
         template.update(sql);
     }
