@@ -41,9 +41,6 @@ public class ClockInCheckerRule implements ChainRule {
         } else {
             if (passedAMinute(lastCheckIn, dateTime)) {
                 clockInDao.insert(clockIn);
-//                WorkTime workTime = workTimeDao.get(clockIn.getLocalDateTime(), clockIn.getPis());
-//                boolean changeRestSwitch = !workTime.isResting();
-//                workTimeDao.updateIsResting(clockIn.getPis(), changeRestSwitch);
             } else {
                 throw new ChainException("Less than a minute");
             }
