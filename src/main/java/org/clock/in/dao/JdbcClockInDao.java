@@ -47,7 +47,7 @@ public class JdbcClockInDao {
 
     public List<ClockIn> get(LocalDateTime date, String pis) {
 
-        String sql = "SELECT * FROM work_time WHERE pis = '?' and date(work_date) = '?'";
+        String sql = "SELECT * FROM work_time WHERE pis = '%s' and date(work_date) = '%s'";
         sql = String.format(sql, pis, date.toString());
         return template.query(sql, new BeanPropertyRowMapper(ClockIn.class));
     }
