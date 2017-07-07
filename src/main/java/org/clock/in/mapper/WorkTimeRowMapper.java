@@ -4,12 +4,13 @@ import org.clock.in.model.ClockIn;
 import org.clock.in.model.WorkTime;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class WorkTimeRowMapper implements RowMapper {
+public class WorkTimeRowMapper implements RowMapper, Serializable {
 
     public Object mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         String pis = resultSet.getString("pis");

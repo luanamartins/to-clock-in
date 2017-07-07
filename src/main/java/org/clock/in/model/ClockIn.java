@@ -1,8 +1,9 @@
 package org.clock.in.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ClockIn {
+public class ClockIn implements Serializable {
 
     private String pis;
     private LocalDateTime localDateTime;
