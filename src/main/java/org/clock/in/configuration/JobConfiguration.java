@@ -1,9 +1,6 @@
 package org.clock.in.configuration;
 
 import org.clock.in.jobs.WorkTimeJob;
-import org.springframework.batch.core.configuration.JobLocator;
-import org.springframework.batch.core.configuration.JobRegistry;
-import org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ComponentScan(basePackages = {"org.clock.in.jobs"})
+@ComponentScan(basePackages = {"org.clock.in.jobs", "org.clock.in.jobs.registers"})
 public class JobConfiguration {
 
     @Autowired
