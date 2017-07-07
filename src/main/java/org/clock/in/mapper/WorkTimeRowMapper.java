@@ -16,7 +16,7 @@ public class WorkTimeRowMapper implements RowMapper, Serializable {
         String pis = resultSet.getString("pis");
 
         String strDate = resultSet.getString("work_date");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
         LocalDateTime time = LocalDateTime.parse(strDate, formatter);
 
         int workHours = resultSet.getInt("work_hours");

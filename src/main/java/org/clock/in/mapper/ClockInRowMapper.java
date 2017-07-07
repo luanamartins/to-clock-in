@@ -12,10 +12,13 @@ import java.time.format.DateTimeFormatter;
 public class ClockInRowMapper implements RowMapper, Serializable {
 
     public Object mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
-        String pis = resultSet.getString("pis");
-        String strDate = resultSet.getString("clockin_time");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime time = LocalDateTime.parse(strDate, formatter);
-        return new ClockIn(pis, time);
+        if (resultSet.next()) {
+            String pis = resultSet.getString("pis");
+            String strDate = resultSet.getString("clockin_time");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime time = LocalDateTime.parse(strDate, formatter);
+            return new ClockIn(pis, time);
+        }
+        return null;
     }
 }
