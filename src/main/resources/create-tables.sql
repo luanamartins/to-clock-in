@@ -15,3 +15,7 @@ CREATE TABLE `work_time` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `clock_in`.`workers` (
+  `pis` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`pis`));
