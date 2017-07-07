@@ -10,7 +10,7 @@ public class WorkTime implements Serializable {
     private int hours;
     private int minutes;
     private int restMinutes;
-    private boolean isResting;
+    private boolean firstIn;
 
     public WorkTime(String pis, LocalDateTime localDateTime) {
         this.pis = pis;
@@ -18,16 +18,16 @@ public class WorkTime implements Serializable {
         this.hours = 0;
         this.minutes = 0;
         this.restMinutes = 0;
-        this.isResting = false;
+        this.firstIn = false;
     }
 
-    public WorkTime(String pis, LocalDateTime localDateTime, int hours, int minutes, int restMinutes, boolean isResting) {
+    public WorkTime(String pis, LocalDateTime localDateTime, int hours, int minutes, int restMinutes, boolean firstIn) {
         this.pis = pis;
         this.localDateTime = localDateTime;
         this.hours = hours;
         this.minutes = minutes;
         this.restMinutes = restMinutes;
-        this.isResting = isResting;
+        this.firstIn = firstIn;
     }
 
     public String getPis() {
@@ -70,11 +70,11 @@ public class WorkTime implements Serializable {
         this.restMinutes = restMinutes;
     }
 
-    public boolean isResting() {
-        return isResting;
+    public boolean isFirstIn() {
+        return firstIn;
     }
 
-    public void setResting(boolean resting) {
-        isResting = resting;
+    public void setFirstIn(boolean firstIn) {
+        this.firstIn = firstIn;
     }
 }

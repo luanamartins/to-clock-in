@@ -34,9 +34,9 @@ public class JdbcWorkTimeDao {
         return (WorkTime) workTime;
     }
 
-    public void updateIsResting(String pis, boolean isResting) {
-        String sql = "update work_time set is_resting = %b where pis = '%s'";
-        sql = String.format(sql, isResting, pis);
+    public void updateFirstIn(String pis, boolean firstIn) {
+        String sql = "update work_time set first_in = %b where pis = '%s'";
+        sql = String.format(sql, firstIn, pis);
         template.update(sql);
     }
 

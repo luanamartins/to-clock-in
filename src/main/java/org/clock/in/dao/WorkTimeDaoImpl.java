@@ -20,11 +20,11 @@ public class WorkTimeDaoImpl implements WorkTimeDao {
         return dao.get(date, pis);
     }
 
-    public void updateIsResting(String pis, boolean isResting){
-        dao.updateIsResting(pis, isResting);
+    public void updateFirstIn(String pis, boolean firstIn) {
+        dao.updateFirstIn(pis, firstIn);
     }
 
-    public void updateWorkRestTime(WorkTime workTime, int totalRestTime){
+    public void updateWorkRestTime(WorkTime workTime, int totalRestTime) {
         dao.updateWorkRestTime(workTime, totalRestTime);
     }
 
