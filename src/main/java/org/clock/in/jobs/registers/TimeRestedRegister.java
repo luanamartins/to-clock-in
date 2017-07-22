@@ -25,29 +25,35 @@ public class TimeRestedRegister {
     @Autowired
     private TimeUtil timeUtil;
 
-    public void registerRestTime(String pis, LocalDateTime localDateTime){
+    public void calculateRestTimeInMinutes(String pis, LocalDateTime localDateTime) {
         List<ClockIn> marks = clockInDao.get(localDateTime, pis);
         WorkTime workTime = workTimeDao.get(localDateTime, pis);
-        registerRestTime(marks, workTime);
+        int restMinutes = calculateRestTimeInMinutes(marks, workTime.isFirstIn());
+        workTimeDao.updateWorkRestTime(workTime, restMinutes);
     }
 
-    public void registerRestTime(List<ClockIn> marks, WorkTime workTime) {
+    public int calculateRestTimeInMinutes(List<ClockIn> marks, boolean considerFirstMark) {
+        int restMinutes = 0;
         if (marks != null) {
-            boolean considerFirstMark = workTime.isFirstIn();
 
             int i = 0;
             if (!considerFirstMark) {
                 i++;
             }
 
-            ClockIn first = marks.get(i);
-            LocalDateTime current = first.getLocalDateTime();
+            int firstRestTime = i + 1;
+            ClockIn previousClockIn = marks.get(firstRestTime);
+            LocalDateTime previous = previousClockIn.getLocalDateTime();
+            LocalDateTime current = marks.get(i + 1).getLocalDateTime();
 
-            int restMinutes = 0;
             for (; i < marks.size() - 1; i++) {
-                timeUtil.diffInMinutes(current);
+                previous = marks.get(i).getLocalDateTime();
+                current = marks.get(i + 1).getLocalDateTime();
+                restMinutes += timeUtil.diffInMinutes(current, previous);
+                i++;
             }
         }
+        return restMinutes;
     }
 
 }
